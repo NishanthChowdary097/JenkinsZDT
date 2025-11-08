@@ -1,0 +1,3 @@
+Save: docker save -o <output_file>.tar <image_name>:<tag>
+Migrate: scp file.txt user@remote_host:/path/to/destination/
+Load: docker load -i <image_file>.tar

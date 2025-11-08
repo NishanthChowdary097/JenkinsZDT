@@ -1,0 +1,34 @@
+name: JenkinsZDT
+
+services:
+  nginx:
+    restart: unless-stopped
+    image: jzdt_nginx:latest
+    build:
+      context: .
+      dockerfile: /nginx/nginx.Dockerfile
+    ports:
+      - "80:80"
+    depends_on:
+      - backend
+      - frontend
+
+  frontend:
+    restart: unless-stopped
+    image: jzdt_frontend:latest
+    build:
+      context: .
+      dockerfile: /frontend/frontend.Dockerfile
+    ports:
+      - "3000:80"
+    depends_on:
+      - backend
+
+  backend:
+    restart: unless-stopped
+    image: jzdt_backend:latest
+    build:
+      context: .
+      dockerfile: /backend/backend.Dockerfile
+    ports:
+      - "8000:8000"
